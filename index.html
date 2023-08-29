@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    main {
+        width: 100%;
+        height: 100vh;
+        background-color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #number {
+        position: fixed;
+        top: 30px;
+        left: 30px;
+        color: aliceblue;
+        font-size: 30px;
+    }
+
+    #img {
+        width: 50%;
+        height: auto;
+
+    }
+</style>
+
+<body>
+    <span id="number"></span>
+    <main>
+        <img id="img" src="img/mouseMove.png" alt="">
+    </main>
+</body>
+<script>
+    document.getElementsByTagName('img')[0].addEventListener('mousemove', (e)=>{
+        document.getElementsByTagName('img')[0].style.transition = '0s'
+
+        // console.log(e);
+        let x = (e.offsetX)/10
+        let w = (e.target.clientWidth) /10
+        console.log(w)
+        let y = (e.offsetY)/10
+        let h = (e.target.clientHeight)/10
+        document.getElementById('number').innerText = 'x is: ' + x + ' ' + 'y is: ' + y
+        document.getElementsByTagName('img')[0].style.transform = 'perspective(800px) rotateY(' +(y-(h/2))+ 'deg) rotateX(' +(x-(w/2))+ 'deg)'
+    })
+    document.getElementsByTagName('img')[0].addEventListener('mouseleave', (e)=>{
+        document.getElementsByTagName('img')[0].style.transform = 'perspective(800px) rotateY(' +0+ 'deg) rotateX(' +0+ 'deg)'
+        document.getElementsByTagName('img')[0].style.transition = '.4s'
+    })
+</script>
+
+</html>
